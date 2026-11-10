@@ -1,0 +1,15 @@
+#!/usr/bin/env sh
+set -eu
+MAVEN_VERSION="3.9.16"
+MAVEN_HOME="${HOME}/.m2/wrapper/dists/apache-maven-${MAVEN_VERSION}"
+MAVEN_BIN="${MAVEN_HOME}/apache-maven-${MAVEN_VERSION}/bin/mvn"
+ZIP="${TMPDIR:-/tmp}/apache-maven-${MAVEN_VERSION}-bin.zip"
+if [ ! -x "$MAVEN_BIN" ]; then
+  mkdir -p "$MAVEN_HOME"
+  URL="https://dlcdn.apache.org/maven/maven-3/${MAVEN_VERSION}/binaries/apache-maven-${MAVEN_VERSION}-bin.zip"
+  echo "[GridWeaver] Downloading Maven ${MAVEN_VERSION}..."
+  if command -v curl >/dev/null 2>&1; then curl -fsSL "$URL" -o "$ZIP"; else wget -q "$URL" -O "$ZIP"; fi
+  unzip -q "$ZIP" -d "$MAVEN_HOME"
+  rm -f "$ZIP"
+fi
+exec "$MAVEN_BIN" "$@"

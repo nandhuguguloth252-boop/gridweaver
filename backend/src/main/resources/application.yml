@@ -1,0 +1,59 @@
+spring:
+  application:
+    name: gridweaver-backend
+  threads:
+    virtual:
+      enabled: true
+  main:
+    keep-alive: true
+  datasource:
+    url: ${SPRING_DATASOURCE_URL:jdbc:h2:mem:gridweaver;DB_CLOSE_DELAY=-1;MODE=PostgreSQL}
+    driver-class-name: ${SPRING_DATASOURCE_DRIVER:org.h2.Driver}
+    username: ${SPRING_DATASOURCE_USERNAME:sa}
+    password: ${SPRING_DATASOURCE_PASSWORD:}
+  jpa:
+    hibernate:
+      ddl-auto: update
+    open-in-view: false
+  h2:
+    console:
+      enabled: true
+  kafka:
+    bootstrap-servers: ${KAFKA_BOOTSTRAP_SERVERS:localhost:9092}
+    consumer:
+      group-id: gridweaver
+      auto-offset-reset: latest
+      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      value-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+    producer:
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: org.apache.kafka.common.serialization.StringSerializer
+      properties:
+        enable.idempotence: true
+        acks: all
+
+server:
+  port: ${SERVER_PORT:8080}
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info,metrics,prometheus
+  endpoint:
+    health:
+      probes:
+        enabled: true
+
+app:
+  cors-origins: "http://localhost:5173,http://localhost:8080"
+
+grid:
+  node-count: ${GRID_NODE_COUNT:5000}
+  kafka:
+    enabled: ${GRID_KAFKA_ENABLED:false}
+    topic: grid.telemetry
+  simulator:
+    enabled: ${GRID_SIMULATOR_ENABLED:true}
+    interval-ms: 1200
+  dashboard-sample-limit: ${GRID_DASHBOARD_SAMPLE_LIMIT:800}

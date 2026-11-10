@@ -1,0 +1,1 @@
+export default function StateLegend(){return <div className="legend">{[['IDLE','Idle'],['CHARGING','Charging'],['DISCHARGING','Discharging'],['FAULT','Fault']].map(([a,b])=><span key={a}><i className={`dot ${a}`}></i>{b}</span>)}</div>}

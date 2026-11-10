@@ -1,0 +1,2 @@
+import type {ZoneSummary} from '../../types';
+export default function ZoneTable({zones}:{zones:ZoneSummary[]}){return <div className="panel"><div className="panelTitle">Regional Balance</div><table><thead><tr><th>Zone</th><th>Solar kW</th><th>Load kW</th><th>Battery kWh</th><th>Net</th></tr></thead><tbody>{zones.map(z=><tr key={z.zone}><td>{z.zone}</td><td>{z.solarKw.toFixed(0)}</td><td>{z.loadKw.toFixed(0)}</td><td>{z.batteryKwh.toFixed(0)}</td><td className={z.balanceKw>=0?'positive':'negative'}>{z.balanceKw.toFixed(0)}</td></tr>)}</tbody></table></div>}

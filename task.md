@@ -1,0 +1,21 @@
+# GridWeaver implementation tracker
+
+- [x] Backend Maven project
+- [x] Java 21 virtual-thread ingestion
+- [x] Spring StateMachine battery lifecycle
+- [x] Concurrent in-memory node registry
+- [x] H2 audit event persistence
+- [x] Kafka producer/consumer integration
+- [x] WebSocket broadcast channel
+- [x] Storm simulation
+- [x] 50k virtual-thread benchmark
+- [x] Regional balancing
+- [x] REST APIs and actuator metrics
+- [x] React + TypeScript dashboard
+- [x] Leaflet GIS layer
+- [x] Live event log
+- [x] Power-flow overlay
+- [x] Docker Compose + Kafka + monitoring
+- [x] Prometheus/Grafana configuration
+- [x] CI workflow
+- [x] Demo documentation

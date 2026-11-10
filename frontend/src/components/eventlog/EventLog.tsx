@@ -1,0 +1,2 @@
+import type {GridEvent} from '../../types';
+export default function EventLog({events}:{events:GridEvent[]}){return <div className="panel eventLog"><div className="panelTitle">Live Event Log</div><div className="logList">{events.map(e=><div className="log" key={e.id}><div className="logTime">{new Date(e.createdAt).toLocaleTimeString()}</div><div><b>{e.nodeId}</b> · {e.zone}<br/><span>{e.fromState} → {e.toState}</span> <em>{e.reason}</em></div></div>)}</div></div>}
